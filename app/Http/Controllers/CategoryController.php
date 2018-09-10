@@ -8,10 +8,10 @@ use App\Category;
 class CategoryController extends Controller
 {
     //for auth
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
 
     public function index()
@@ -31,7 +31,7 @@ class CategoryController extends Controller
         //
         $categories = Category::all();
         return view('categories.create', compact('categories'));
-        // return view('categories.create');
+     
     }
 
     /**
@@ -50,7 +50,7 @@ class CategoryController extends Controller
         Category::create(request(['category_parent', 'category_name']));
 
         // session()->flash("success_message", "You have created a new category");
-        // return redirect('/categories');
+        return redirect('/categories');
     }
 
     /**
@@ -70,10 +70,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($categoryId)
+    public function edit($id)
     {
         //
-        $category = Category::find($categoryId);
+        $category = Category::find($id);
         return view('categories.edit', compact('category'));
     }
 
@@ -92,7 +92,7 @@ class CategoryController extends Controller
             'category_name'=>'required',
         ]);
         
-        Category::where('categoryId', $id)
+        Category::where('id', $id)
         ->update(request(['category_parent', 'category_name']));
         return redirect('/categories');
     }
@@ -106,7 +106,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
-        Category::where('categoryId', $id)
+        Category::where('id', $id)
         ->delete();
         return redirect('/categories');
     }

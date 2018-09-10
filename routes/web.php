@@ -18,6 +18,9 @@ Route::get('/', function () {
 Route::get('/categories',  'CategoryController@index');
 Route::get('/categories/create',  'CategoryController@create');
 Route::post('/categories',  'CategoryController@store');
-Route::get('/categories/edit/{categoryId}',  'CategoryController@edit');
-Route::patch('/categories/{categoryId}',  'CategoryController@update');
-Route::get('/categories/delete/{categoryId}',  'CategoryController@destroy');
+Route::get('/categories/edit/{id}',  'CategoryController@edit');
+Route::patch('/categories/{id}',  'CategoryController@update');
+Route::get('/categories/delete/{id}',  'CategoryController@destroy');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
