@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Routes for Categories
 Route::get('/categories',  'CategoryController@index');
 Route::get('/categories/create',  'CategoryController@create');
 Route::post('/categories',  'CategoryController@store');
@@ -23,6 +23,16 @@ Route::patch('/categories/{id}',  'CategoryController@update');
 Route::get('/categories/delete/{id}',  'CategoryController@destroy');
 Auth::routes();
 
+//Routes for users crud
+Route::get('/users',  'UserController@index');
+Route::get('/users/create',  'UserController@create');
+Route::post('/users',  'UserController@store');
+Route::get('/users/edit/{id}',  'UserController@edit');
+Route::patch('/users/{id}',  'UserController@update');
+Route::get('/users/delete/{id}',  'UserController@destroy');
+Auth::routes();
+
+//Routes for multi user authentication
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()

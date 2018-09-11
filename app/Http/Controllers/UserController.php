@@ -3,17 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class UserController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{    
+      //for auth
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+
     public function index()
     {
         //
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -21,9 +29,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function create()
     {
         //
+        $users = User::all();
+        return view('users.create', compact('users'));
+     
     }
 
     /**
@@ -35,6 +48,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate(request(),[
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+            'usertype_id'=>'required',
+        ]);
+
+        User::create(request(['name', 'email', 'password', 'usertype_id']));
+
+        // session()->flash("success_message", "You have created a new category");
+        return redirect('/users');
     }
 
     /**
@@ -57,6 +81,8 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::find($id);
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -69,6 +95,16 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate(request(),[
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+            'usertype_id'=>'required',
+        ]);
+      
+        User::where('id', $id)
+        ->update(request([' usertype_id', 'name',  'email',   'password' ]));
+        return redirect('/users');
     }
 
     /**
@@ -80,5 +116,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        User::where('id', $id)
+        ->delete();
+        return redirect('/users');
     }
 }
