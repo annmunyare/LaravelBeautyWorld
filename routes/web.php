@@ -24,3 +24,16 @@ Route::get('/categories/delete/{id}',  'CategoryController@destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+{
+	Route::match(['get', 'post'], '/adminOnlyPage/', 'HomeController@admin');	
+});
+Route::group(['middleware' => 'App\Http\Middleware\BuyerMiddleware'], function()
+{
+	Route::match(['get', 'post'], '/buyerOnlyPage/', 'HomeController@buyer');
+});
+Route::group(['middleware' => 'App\Http\Middleware\SellerMiddleware'], function()
+{
+	Route::match(['get', 'post'], '/sellerOnlyPage/', 'HomeController@seller');	
+});
