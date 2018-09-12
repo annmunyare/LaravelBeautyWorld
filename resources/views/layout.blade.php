@@ -11,7 +11,7 @@
     <title>Hello, world!</title>
   </head>
   <body>
-  @include('layouts.navigation')
+
   <div class ="container">
   @if(count($errors))
     <div class ="alert alert-danger">

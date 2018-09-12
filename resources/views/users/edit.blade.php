@@ -1,4 +1,5 @@
-@extends('layout')
+<!-- @extends('layout') -->
+@include('layouts.navigationadmin')
 
 @section('content')
 <br>

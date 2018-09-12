@@ -1,4 +1,5 @@
-@extends('layout')
+<!-- @extends('layout') -->
+@include('layouts.navigationadmin')
 <div class = "container">
    @section('content')
    <a href="/users/create" class="btn btn-warning">Add User</a>

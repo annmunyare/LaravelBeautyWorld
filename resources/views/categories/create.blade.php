@@ -1,5 +1,5 @@
-@extends('layout')
-
+<!-- @extends('layout') -->
+@include('layouts.navigationadmin')
 @section('content')
 <form class = "form-horizontal" action="/categories" method = "POST">   
     {{ csrf_field() }}

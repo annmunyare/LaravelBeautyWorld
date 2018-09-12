@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 //Routes for Categories
 Route::get('/categories',  'CategoryController@index');
 Route::get('/categories/create',  'CategoryController@create');
@@ -23,6 +24,23 @@ Route::patch('/categories/{id}',  'CategoryController@update');
 Route::get('/categories/delete/{id}',  'CategoryController@destroy');
 Auth::routes();
 
+//Routes for Products
+Route::get('/products',  'ProductController@index');
+Route::get('/products/create',  'ProductController@create');
+Route::post('/products',  'ProductController@store');
+Route::get('/products/edit/{id}',  'ProductController@edit');
+Route::patch('/products/{id}',  'ProductController@update');
+Route::get('/products/delete/{id}',  'ProductController@destroy');
+Auth::routes();
+
+//Routes for Features
+Route::get('/features',  'FeatureController@index');
+Route::get('/features/create',  'FeatureController@create');
+Route::post('/features',  'FeatureController@store');
+Route::get('/features/edit/{id}',  'FeatureController@edit');
+Route::patch('/features/{id}',  'FeatureController@update');
+Route::get('/features/delete/{id}',  'FeatureController@destroy');
+Auth::routes();
 //Routes for users crud
 Route::get('/users',  'UserController@index');
 Route::get('/users/create',  'UserController@create');

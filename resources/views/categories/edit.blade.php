@@ -1,4 +1,5 @@
-@extends('layout')
+<!-- @extends('layout') -->
+@include('layouts.navigationadmin')
 <div class = "container-fluid">
 
 @section('content')

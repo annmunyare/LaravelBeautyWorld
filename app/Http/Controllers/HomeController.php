@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Product;
 
 class HomeController extends Controller
 {
@@ -32,9 +33,9 @@ class HomeController extends Controller
         return view('categories.index', compact('categories'));
     }
     public function seller(Request $req){
-        return view('middleware')->withMessage("Seller");
-        // $categories = Category::all();
-        // return view('categories.index', compact('categories'));
+        // return view('middleware')->withMessage("Seller");
+        $products = Product::all();
+        return view('products.index', compact('products'));
     }
     public function buyer(Request $req){
         return view('middleware')->withMessage("Buyer");
