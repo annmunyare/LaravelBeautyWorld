@@ -38,6 +38,8 @@ class HomeController extends Controller
         return view('products.index', compact('products'));
     }
     public function buyer(Request $req){
-        return view('middleware')->withMessage("Buyer");
+        $products = Product::all();
+        // return view('middleware')->withMessage("Buyer");
+        return view('buyers.index', compact('products'));
     }
 }

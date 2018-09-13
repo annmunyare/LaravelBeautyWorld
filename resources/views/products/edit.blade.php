@@ -18,13 +18,11 @@
                             <label for="title"class="col-md-4 col-form-label text-md-right">{{ __('Product Category') }}</label>
                             <div class="col-md-6">
                             
-                            @foreach($product->categories as $category)
+  
                             
-                                @if( $product->category_id == $categories->id)
-                               
-                                <input type="text" class="form-control" name="category_id" value ="     {{$categories->category_name}}" readonly>
-                                @endif
-                            @endforeach
+                                <input type="text" class="form-control" name="category_id" value ="{{$category->category_name}}" readonly>
+                              
+                          
                               
                             </div>
                         </div>
@@ -39,10 +37,14 @@
                         </div>
                         <div class="form-group row">
                             <label for="product_status" class="col-md-4 col-form-label text-md-right">{{ __('Product Status') }}</label>
-
                             <div class="col-md-6">
-                                <input id="product_status" type="number" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="product_status"  value ="{{$product->product_status}}" >
-
+                                <select name="product_status" id="type" class="form-control">
+                                
+                                  @foreach ($products as $product)
+                                  
+                                  <option value="{{$product->product_status}}">{{$product->product_status}}</option>
+                                  @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">

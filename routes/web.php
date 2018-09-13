@@ -43,8 +43,8 @@ Route::get('/features/delete/{id}',  'FeatureController@destroy');
 Auth::routes();
 
 //route for productfeatures
-// Route::get('/productfeatures',  'ProductFeatureController@index');
-Route::get('product/productfeatures/{{$product->id}}',  'ProductController@productfeatures');
+// Route::get('productfeatures/index/{{$product->id}} ',  'ProductFeatureController@index');
+Route::get('productfeatures/index/{id} ',  'ProductController@productfeature');
 Route::post('/productfeatures',  'ProductFeatureController@store');
 Route::get('/productfeatures/edit/{id}',  'ProductFeatureController@edit');
 Route::patch('/productfeatures/{id}',  'ProductFeatureController@update');

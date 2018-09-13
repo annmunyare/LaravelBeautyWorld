@@ -17,8 +17,7 @@
                             <label for="title"class="col-md-4 col-form-label text-md-right">{{ __('Product Category') }}</label>
                             <div class="col-md-6">
                             <select name="category_id" id=""  class="form-control">
-                            
-                              <option value="" class="col-md-4 col-form-label text-md-right">---Category---</option>
+                              <option value="" class="col-md-4 col-form-label text-md-right">Category</option>
                               @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->category_name}}</option>
                               @endforeach
@@ -40,8 +39,8 @@
                             <div class="col-md-6">
                                 <select name="product_status" id="type" class="form-control">
                                 <option value="">Product Status</option>
-                                <option value="1">In stock</option>
-                                <option value="2">Sold out</option>
+                                <option value="Instock">In stock</option>
+                                <option value="Soldout">Sold out</option>
                                 </select>
                             </div>
                         </div>
@@ -59,12 +58,11 @@
 
                             <div class="col-md-6">
                                 <textarea id="product_description" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="product_description"  placeholder="Enter Product Description" required autofocus></textarea>
-
                             </div>
                         </div>
 
                         </div>
-                        <div class="form-group">
+                        <div class="form-group row">
                               <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Product Image') }}</label>
                               
                             <div class="col-md-6">

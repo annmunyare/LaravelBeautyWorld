@@ -73,8 +73,9 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+        $categories = Category::all();
         $category = Category::find($id);
-        return view('categories.edit', compact('category'));
+        return view('categories.edit', compact('category', 'categories'));
     }
 
     /**
@@ -87,6 +88,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $categories = Category::all();
         $this->validate(request(),[
             'category_parent'=>'required',
             'category_name'=>'required',

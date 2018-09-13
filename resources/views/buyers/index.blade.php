@@ -10,7 +10,7 @@
         @foreach($products as $product)
         <li class="span4">
           <div class="thumbnail">
-            <img src="/images/{{$product->cover}}" alt="ALT NAME">
+            <img src="/images/{{$product->image}}" alt="ALT NAME">
             <div class="caption">
               <h3>{{$product->product_name}}</h3>
                <p>Price : <b>{{$product->product_price}}</b></p>

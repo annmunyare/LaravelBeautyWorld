@@ -33,7 +33,7 @@
            
             <td> <a href = "/products/edit/{{$product->id}} " class="btn btn-sm btn-primary">Edit</a></td>
             <td> <a href = "/products/delete/{{$product->id}} " onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">Delete</a></td>
-            <td> <a href = "/productfeatures/create/{{$product->id}} " class="btn btn-sm btn-success"> Product Feature</a></td>
+            <td> <a href = "/productfeatures/index/{{$product->id}} " class="btn btn-sm btn-success"> Product Feature</a></td>
          </tr>
          @endforeach
       </table>

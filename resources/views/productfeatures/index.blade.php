@@ -12,7 +12,7 @@
             <th >Feature Name</th>
             <th colspan = "3"> Actions</th>
          </tr>
-         @if(count($product->features))
+         @if(array($product->features))
             @foreach($product->features as $feature)
             <tr>
             <td>{{ $product['product_name'] }}</td>
