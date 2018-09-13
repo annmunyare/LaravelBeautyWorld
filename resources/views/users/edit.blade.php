@@ -92,12 +92,6 @@
 </div>
 @endsection
 
-<select name="usertype_id" id="type" class="form-control">
-<option value="{{ $user->usertype_id }}" >{{ $user->usertype->type }}</option>
-@foreach($types as $type)
-<option value="{{ $type->id }}">{{ $type->user_type }}</option>
-@endforeach
-</select>
 
 
 

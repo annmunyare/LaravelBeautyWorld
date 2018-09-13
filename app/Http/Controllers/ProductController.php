@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
 class ProductController extends Controller
 {
     /**
@@ -20,7 +21,8 @@ class ProductController extends Controller
     {
         //
         $products = Product::all();
-        return view('products.index', compact('products'));
+        $categories = Category::all();
+        return view('products.index', compact('products', 'categories'));
     }
 
     /**
@@ -32,7 +34,8 @@ class ProductController extends Controller
     {
         //
         $products = Product::all();
-        return view('products.create', compact('products'));
+        $categories = Category::all();
+        return view('products.create', compact('products', 'categories'));
      
     }
 
@@ -79,8 +82,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
-        $category = Product::find($id);
-        return view('products.edit', compact('category'));
+        $product = Product::find($id);
+        return view('products.edit', compact('product'));
     }
 
     /**

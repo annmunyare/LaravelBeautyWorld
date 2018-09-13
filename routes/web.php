@@ -40,6 +40,11 @@ Route::post('/features',  'FeatureController@store');
 Route::get('/features/edit/{id}',  'FeatureController@edit');
 Route::patch('/features/{id}',  'FeatureController@update');
 Route::get('/features/delete/{id}',  'FeatureController@destroy');
+//route for productfeatures
+Route::get('/features/productfeatures/{id}',  'FeatureController@productfeatures');
+Route::post('/productfeatures', 'FeatureController@store');
+Route::patch('/productfeatures/{feature}/{id}',  'FeatureController@update');
+Route::get('/productfeatures/{id}',  'FeatureController@destroy');
 Auth::routes();
 //Routes for users crud
 Route::get('/users',  'UserController@index');
