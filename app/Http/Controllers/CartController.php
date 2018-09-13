@@ -3,24 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cart;
 
-class ProductFeatureController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
         //
-        // $productfeatures = ProductFeature::all();
-        // return view('productfeatures.index', compact('productfeatures'));
+        $carts = Cart::all();
+        return view('carts.index', compact('carts'));
     }
 
     /**
@@ -31,9 +27,6 @@ class ProductFeatureController extends Controller
     public function create()
     {
         //
-        $productfeatures = ProductFeature::all();
-        return view('productfeatures.create', compact('productfeatures'));
-     
     }
 
     /**
@@ -46,17 +39,18 @@ class ProductFeatureController extends Controller
     {
         //
         $this->validate(request(),[
-            'product_name'=>'required',
-            'product_status'=>'required',
-            'product_price'=>'required',
-            'category_id'=>'required',
-            'product_description'=>'required',
+            'user_id'=>'required',
+            'product_id'=>'required',
+            'amount'=>'required',
+            'total'=>'required',
         ]);
 
-        ProductFeature::create(request(['product_name', 'product_status', 'product_price', 'category_id', 'product_description',]));
+
+        Category::create(request(['user_id', 'product_id', 'amount', 'total']));
+        return view('buyers.index', compact('products'));
 
         // session()->flash("success_message", "You have created a new category");
-        return redirect('/productfeatures');
+        // return redirect('/categories');
     }
 
     /**
@@ -79,9 +73,6 @@ class ProductFeatureController extends Controller
     public function edit($id)
     {
         //
-      
-        $productfeatures = ProductFeature::find($id);
-        return view('productfeatures.edit', compact('productfeatures'));
     }
 
     /**
@@ -94,17 +85,6 @@ class ProductFeatureController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate(request(),[
-
-            'product_name'=>'required',
-            'product_status'=>'required',
-            'product_price'=>'required',
-             'product_description'=>'required',
-        ]);
-        
-        ProductFeature::where('id', $id)
-        ->update(request(['product_name', 'product_status', 'product_price', 'product_description' ]));
-        return redirect('/productfeatures');
     }
 
     /**
@@ -116,8 +96,9 @@ class ProductFeatureController extends Controller
     public function destroy($id)
     {
         //
-        ProductFeature::where('id', $id)
+        Cart::where('id', $id)
         ->delete();
-        return redirect('/productfeatures');
+        return view('buyers.index', compact('products'));
+        // return redirect('/categories');
     }
 }

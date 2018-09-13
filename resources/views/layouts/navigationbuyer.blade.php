@@ -21,23 +21,14 @@
          <li class="nav-item active">
             <a class="nav-link" href="/products">Products <span class="sr-only">(current)</span></a>
          </li>
-         <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"  href="/products" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Products
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-               <a class="dropdown-item" href="/allProducts">All Products</a>
-               <a class="dropdown-item" href="/Features">Features</a>
-            </div>
-         </li> -->
-         <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="/orders">Orders</a>
          </li>
          <li class="nav-item">
             <a class="nav-link" href="/reviews">Reviews</a>
          </li>
          <li class="nav-item">
-            <a class="nav-link" href="/carts">Cart</a>
+         <a href="/cart"><i class="icon-shopping-cart icon-black"></i> Your Cart</a>
          </li>
          <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -57,6 +48,9 @@
       </ul>
    </div>
 </nav>
+<div class = "container">
+@yield('content')
+</div>
 <script type= "text/javascript"  src= "js/custom.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

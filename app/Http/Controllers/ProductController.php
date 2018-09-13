@@ -82,8 +82,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
+        $products = Product::all();
         $product = Product::find($id);
-        return view('products.edit', compact('product'));
+        $categories = Category::all();
+        return view('products.edit', compact('product', 'products', 'categories'));
     }
 
     /**
@@ -121,5 +123,11 @@ class ProductController extends Controller
         Product::where('id', $id)
         ->delete();
         return redirect('/products');
+    }
+    public function productfeature($id)
+    {
+        //
+        $product = Product::find($id);
+        return view('productfeatures.index', compact('product'));
     }
 }

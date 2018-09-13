@@ -17,7 +17,15 @@
                         <div class="form-group row">
                             <label for="title"class="col-md-4 col-form-label text-md-right">{{ __('Product Category') }}</label>
                             <div class="col-md-6">
-                              <input type="text" class="form-control" name="category_id" value ="{{$product->category_id}}" readonly>
+                            
+                            @foreach($product->categories as $category)
+                            
+                                @if( $product->category_id == $categories->id)
+                               
+                                <input type="text" class="form-control" name="category_id" value ="     {{$categories->category_name}}" readonly>
+                                @endif
+                            @endforeach
+                              
                             </div>
                         </div>
 
@@ -48,7 +56,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Product Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="product_description" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="product_description" value ="{{$product->product_description}}"></textarea>
+                                <textarea id="product_description" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="product_description" > {{$product->product_description}}</textarea>
                             </div>
                         </div>
                                                 <div class="form-group row mb-0">

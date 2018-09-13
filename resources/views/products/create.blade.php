@@ -34,19 +34,23 @@
 
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label for="product_status" class="col-md-4 col-form-label text-md-right">{{ __('Product Status') }}</label>
-
                             <div class="col-md-6">
-                                <input id="product_status" type="number" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="product_status"  placeholder="Enter Product Status" required autofocus>
-
+                                <select name="product_status" id="type" class="form-control">
+                                <option value="">Product Status</option>
+                                <option value="1">In stock</option>
+                                <option value="2">Sold out</option>
+                                </select>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label for="product_price" class="col-md-4 col-form-label text-md-right">{{ __('Product Price') }}</label>
 
                             <div class="col-md-6">
-                                <input id="product_price" type="n" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="product_price"  placeholder="Enter Product Price" required autofocus>
+                                <input id="product_price" type="number" step="0.01" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="product_price"  placeholder="Enter Product Price" required autofocus>
 
                             </div>
                         </div>
@@ -60,7 +64,13 @@
                         </div>
 
                         </div>
-
+                        <div class="form-group">
+                              <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Product Image') }}</label>
+                              
+                            <div class="col-md-6">
+                              <input type="file" name="image" class="form-control">
+                              </div>
+                        </div>
                      
 
                       <div class="form-group row mb-0">

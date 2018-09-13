@@ -40,12 +40,27 @@ Route::post('/features',  'FeatureController@store');
 Route::get('/features/edit/{id}',  'FeatureController@edit');
 Route::patch('/features/{id}',  'FeatureController@update');
 Route::get('/features/delete/{id}',  'FeatureController@destroy');
-//route for productfeatures
-Route::get('/features/productfeatures/{id}',  'FeatureController@productfeatures');
-Route::post('/productfeatures', 'FeatureController@store');
-Route::patch('/productfeatures/{feature}/{id}',  'FeatureController@update');
-Route::get('/productfeatures/{id}',  'FeatureController@destroy');
 Auth::routes();
+
+//route for productfeatures
+// Route::get('/productfeatures',  'ProductFeatureController@index');
+Route::get('product/productfeatures/{{$product->id}}',  'ProductController@productfeatures');
+Route::post('/productfeatures',  'ProductFeatureController@store');
+Route::get('/productfeatures/edit/{id}',  'ProductFeatureController@edit');
+Route::patch('/productfeatures/{id}',  'ProductFeatureController@update');
+Route::get('/productfeatures/delete/{id}',  'ProductFeatureController@destroy');
+Auth::routes();
+
+Route::get('/products',  'BuyProductController@index');
+Route::get('/carts',  'CartController@index');
+Route::post('/carts/add',  'CartController@store');
+Route::get('/carts/delete/{id}',  'CartController@destroy');
+//orders 
+Route::get('users/orders',  'OrderController@index');
+Route::post('/orders',  'OrderController@store');
+Route::get('/orders/delete/{id}',  'OrderController@destroy');
+Auth::routes();
+
 //Routes for users crud
 Route::get('/users',  'UserController@index');
 Route::get('/users/create',  'UserController@create');

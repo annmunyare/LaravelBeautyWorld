@@ -11,6 +11,11 @@ class ProductFeature extends Model
     protected $guarded = [];
     public function feature()
     {
-        return $this->belongsTo(ProductFeature::class);
+        return $this->belongsTo(Feature::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

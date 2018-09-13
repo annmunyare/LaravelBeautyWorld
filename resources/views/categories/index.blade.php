@@ -3,7 +3,7 @@
  <div class = "container">
  @section('content')
     <a href="/categories/create" class="btn btn-warning">Add Category</a>
-    <table class="table table-condensed table striped table-bordered table-hover ">
+    <table class="table table-condensed table-striped table-bordered table-hover ">
     <tr>
     <th>#</th>
     <th>Category Name</th>
