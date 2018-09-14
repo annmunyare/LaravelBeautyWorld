@@ -55,6 +55,7 @@ Auth::routes();
 
 Route::get('/carts',  'CartController@index');
 Route::post('/carts/add',  'CartController@store');
+Route::get('/carts/add',  'CartController@index');
 Route::get('/carts/delete/{id}',  'CartController@destroy');
 //orders 
 Route::get('users/orders',  'OrderController@index');

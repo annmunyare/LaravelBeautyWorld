@@ -25,12 +25,12 @@
       </tr>
       @foreach($cart_products as $cart_item)
         <tr>
-          <td>{{$cart_item->Products->product_nmae}}</td>
+          <td>{{$cart_item->product->product_name}}</td>
           <td>
            {{$cart_item->amount}}
           </td>
           <td>
-            {{$cart_item->Products->product_price}}
+            {{$cart_item->product->product_price}}
           </td>
           <td>
            {{$cart_item->total}}
@@ -60,7 +60,8 @@
   </table>
   <form action="/order" method="post" accept-charset="UTF-8">
   @csrf
-    <button class="btn btn-block btn-primary btn-large">Place order</button>
+  <a href = "/order" class="btn  btn-block btn-primary btn-large">Place order </a>
+   
   </form>
 </div>
 @endsection

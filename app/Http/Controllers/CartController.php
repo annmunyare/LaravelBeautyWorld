@@ -16,7 +16,12 @@ class CartController extends Controller
     {
         //
         $cart_products = Cart::all();
-        $cart_total = 0;
+        $cart_total=Cart::with('Products')->sum('total');
+        
+    if(!$cart_products){
+
+        return view('carts.index')->with('error','Your cart is empty');
+      }
         return view('carts.index', compact('cart_products', 'cart_total'));
     }
 
@@ -39,16 +44,26 @@ class CartController extends Controller
     public function store(Request $request)
     {
         //
+       
         $this->validate(request(),[
             // 'user_id'=>'required',
             'product_id'=>'required',
             'amount'=>'required',
             'total'=>'required',
         ]);
+        // $user_id = Auth::user()->id;
+        $product = Product::find($product_id);
+        $product_id = Input::get('product');
+        $amount = Input::get('amount');
+        $total = $amount*$product->product_price;
+        $cart_products = Cart::all();
+        $cart_total=Cart::with('Products')->sum('total');
+  
+        
 
 
         Category::create(request(['product_id', 'amount', 'total']));
-        return view('buyers.index', compact('products'));
+        return view('carts.index', compact('product_id', 'amount', 'total', 'product', 'cart_products', 'cart_total'));
 
         // session()->flash("success_message", "You have created a new category");
         // return redirect('/categories');
@@ -99,7 +114,7 @@ class CartController extends Controller
         //
         Cart::where('id', $id)
         ->delete();
-        return view('buyers.index', compact('products'));
+        return redirect('/carts');
         // return redirect('/categories');
     }
 }

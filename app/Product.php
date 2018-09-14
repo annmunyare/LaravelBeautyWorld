@@ -21,6 +21,7 @@ class Product extends Model
     {
         return $this->belongsToMany(Feature::class);
     }
+
     // public function user()
     // {
     //     return $this->belongsTo(User::class);

@@ -4,7 +4,7 @@
 
 <div id="main" class="row">
    <div id="content" class="col-md-8">
-      <a href = "/products/create " class="btn btn-warning">Add</a></td>
+      <a href = "/products/create " class="btn btn-warning">Add</a>
       <table class="table table-condensed table-striped table-bordered table-hover ">
          <tr>
             <th>#</th>
