@@ -13,9 +13,10 @@ class BuyProductController extends Controller
         $this->middleware('auth');
     }
 
-    public function Index()
+    public function index()
     {
-      $products = Product::all();
-      return view('buyers.index', compact('products'));
+        //
+        $products = Product::all();
+        return view('buyers.index', compact('products'));
     }
 }

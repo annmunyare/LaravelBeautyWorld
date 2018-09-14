@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Product;
 use App\User;
 use App\Category;
+use App\Feature;
 
 class Product extends Model
 {

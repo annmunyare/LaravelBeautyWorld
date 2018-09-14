@@ -19,16 +19,16 @@
    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
          <li class="nav-item active">
-            <a class="nav-link" href="/products">Products <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/buyerproducts">Products </a>
          </li>
           <li class="nav-item">
-            <a class="nav-link" href="/orders">Orders</a>
+            <a class="nav-link" href="/users/orders">Orders</a>
          </li>
          <li class="nav-item">
             <a class="nav-link" href="/reviews">Reviews</a>
          </li>
          <li class="nav-item">
-         <a href="/cart"><i class="icon-shopping-cart icon-black"></i> Your Cart</a>
+         <a href="/carts"><i class="icon-shopping-cart icon-black"></i> Your Cart</a>
          </li>
          <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

@@ -1,7 +1,7 @@
 @extends('layouts.navigationbuyer')
 @section('content')
 <div class="container" style="width:60%">
-<h3>Your Orders</h3>
+<h3>My Orders</h3>
 <div class="menu">
   <div class="accordion">
 @foreach($orders as $order)

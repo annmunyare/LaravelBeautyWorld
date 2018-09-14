@@ -43,15 +43,16 @@ Route::get('/features/delete/{id}',  'FeatureController@destroy');
 Auth::routes();
 
 //route for productfeatures
-// Route::get('productfeatures/index/{{$product->id}} ',  'ProductFeatureController@index');
-Route::get('productfeatures/index/{id} ',  'ProductController@productfeature');
+Route::get('productfeatures/index/{id} ',  'ProductFeatureController@index');
 Route::post('/productfeatures',  'ProductFeatureController@store');
 Route::get('/productfeatures/edit/{id}',  'ProductFeatureController@edit');
 Route::patch('/productfeatures/{id}',  'ProductFeatureController@update');
 Route::get('/productfeatures/delete/{id}',  'ProductFeatureController@destroy');
 Auth::routes();
 
-Route::get('/products',  'BuyProductController@index');
+Route::get('/buyerproducts',  'BuyProductController@index');
+Auth::routes();
+
 Route::get('/carts',  'CartController@index');
 Route::post('/carts/add',  'CartController@store');
 Route::get('/carts/delete/{id}',  'CartController@destroy');

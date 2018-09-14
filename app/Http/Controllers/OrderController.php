@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Order;
 class OrderController extends Controller
 {
     /**
@@ -43,7 +43,8 @@ class OrderController extends Controller
     {
     
 
-        Order::create(request(['user_id', 'total']));    
+        // Order::create(request(['user_id', 'total']));   
+        Order::create(request(['total']));
         
         foreach ($cart_products as $order_products) {
     

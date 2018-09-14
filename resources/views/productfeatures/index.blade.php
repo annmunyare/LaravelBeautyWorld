@@ -7,22 +7,19 @@
       <table class="table table-condensed table-striped table-bordered table-hover ">
          <tr>
             <th>#</th>
-            <th> Title</th>
-            <th >Product Name</th>
+             <th >Product Name</th>
             <th >Feature Name</th>
             <th colspan = "3"> Actions</th>
          </tr>
-         @if(array($product->features))
-            @foreach($product->features as $feature)
+         @foreach ($productfeatures as $productfeature)
             <tr>
-            <td>{{ $product['product_name'] }}</td>
-            <td>{{ $feature['feature_name'] }}</td>
-            <td>
-            <td> <a href = "/productfeatures/edit/{{$productfeature->id}} " class="btn btn-sm btn-primary">Edit</a></td>
+            <td>{{$productfeature->id}}</td>
+            <td>{{$productfeature->product->product_name}}</td>
+            <td>{{$productfeature->feature->feature_name}}</td>
+             <td> <a href = "/productfeatures/edit/{{$productfeature->id}} " class="btn btn-sm btn-primary">Edit</a></td>
             <td> <a href = "/productfeatures/delete/{{$productfeature->id}} " onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">Delete</a></td>
-         </tr>
-         @endforeach
-        @endif
+            </tr>
+        @endforeach
       </table>
    </div>
 

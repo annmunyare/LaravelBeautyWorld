@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
+
+use App\ProductFeature;
 
 class ProductFeatureController extends Controller
 {
@@ -19,9 +22,9 @@ class ProductFeatureController extends Controller
     
     public function index()
     {
-        //
-        // $productfeatures = ProductFeature::all();
-        // return view('productfeatures.index', compact('productfeatures'));
+        
+        $productfeatures = ProductFeature::all();
+        return view('productfeatures.index', compact('productfeatures'));
     }
 
     /**

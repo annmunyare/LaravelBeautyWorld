@@ -20,6 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         //
+        
         $products = Product::all();
         $categories = Category::all();
         return view('products.index', compact('products', 'categories'));
@@ -56,7 +57,7 @@ class ProductController extends Controller
             'product_description'=>'required',
         ]);
 
-        Product::create(request(['product_name', 'product_status', 'product_price', 'category_id', 'product_description',]));
+        Product::create(request(['product_name', 'product_status', 'product_price', 'category_id', 'product_description','image']));
 
         // session()->flash("success_message", "You have created a new category");
         return redirect('/products');
@@ -85,8 +86,8 @@ class ProductController extends Controller
         $products = Product::all();
         $product = Product::find($id);
         $category = Category::find($id);
-      ;
-        return view('products.edit', compact('product', 'products',  'category'));
+        $categories = Category::all();
+        return view('products.edit', compact('product', 'products', 'categories', 'category'));
     }
 
     /**
@@ -125,10 +126,5 @@ class ProductController extends Controller
         ->delete();
         return redirect('/products');
     }
-    public function productfeature($id)
-    {
-        //
-        $product = Product::find($id);
-        return view('productfeatures.index', compact('product'));
-    }
+
 }

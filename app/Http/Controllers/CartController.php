@@ -15,8 +15,9 @@ class CartController extends Controller
     public function index()
     {
         //
-        $carts = Cart::all();
-        return view('carts.index', compact('carts'));
+        $cart_products = Cart::all();
+        $cart_total = 0;
+        return view('carts.index', compact('cart_products', 'cart_total'));
     }
 
     /**
@@ -39,14 +40,14 @@ class CartController extends Controller
     {
         //
         $this->validate(request(),[
-            'user_id'=>'required',
+            // 'user_id'=>'required',
             'product_id'=>'required',
             'amount'=>'required',
             'total'=>'required',
         ]);
 
 
-        Category::create(request(['user_id', 'product_id', 'amount', 'total']));
+        Category::create(request(['product_id', 'amount', 'total']));
         return view('buyers.index', compact('products'));
 
         // session()->flash("success_message", "You have created a new category");
