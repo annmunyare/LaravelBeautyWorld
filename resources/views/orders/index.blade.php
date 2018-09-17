@@ -4,16 +4,20 @@
 <h3>My Orders</h3>
 <div class="menu">
   <div class="accordion">
-@foreach($orders as $order)
- <div class="accordion-group">
 
-      <div id="order{{$order->id}}" class="accordion-body collapse">
+ <div class="accordion-group">
         <div class="accordion-inner">
           <table class="table table-striped table-condensed">
             <thead>
               <tr>
               <th>
-              Title
+                #
+              </th>
+              <th>
+                Order Id
+              </th>
+              <th>
+                Product 
               </th>
               <th>
               Amount
@@ -27,26 +31,23 @@
               </tr>
             </thead>   
             <tbody>
-            @foreach($order->orderItems as $orderitem)
+            @foreach($order_products as $orderp)
               <tr>
-                <td>{{$orderitem->title}}</td>
-                <td>{{$orderitem->pivot->amount}}</td>
-                <td>{{$orderitem->pivot->price}}</td>
-                <td>{{$orderitem->pivot->total}}</td>
+                <td>{{$orderp->id}}</td>
+                <td>{{$orderp->order_id}}</td>
+                <td>{{$orderp->product->product_name}}</td>
+                <td>{{$orderp-> amount}}</td>
+                <td>{{$orderp->price}}</td>
+                <td>{{$orderp->total}}</td>
               </tr>
-            @endforeach
-              <tr>
-                <td></td>
-                <td></td>
-                <td><b>Total</b></td>
-                <td><b>{{$order->total}}</b></td>
-              </tr>
+              @endforeach
+          
           </tbody>
           </table>
         </div>
-      </div>
+    
     </div>
-@endforeach
+
 </div>
 </div>
 </div>

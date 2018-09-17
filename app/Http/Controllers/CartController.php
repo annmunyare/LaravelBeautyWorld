@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Cart;
+use App\Product;
 
 class CartController extends Controller
 {
@@ -16,7 +18,8 @@ class CartController extends Controller
     {
         //
         $cart_products = Cart::all();
-        $cart_total=Cart::with('Products')->sum('total');
+        // $cart_total=Cart::with('Products')->sum('total');
+        $cart_total = 100;
         
     if(!$cart_products){
 
@@ -44,30 +47,34 @@ class CartController extends Controller
     public function store(Request $request)
     {
         //
-       
         $this->validate(request(),[
-            // 'user_id'=>'required',
-            'product_id'=>'required',
-            'amount'=>'required',
-            'total'=>'required',
+            // 'id'=>'required',
+            // 'amonunt'=>'required',
+   
         ]);
-        // $user_id = Auth::user()->id;
-        $product = Product::find($product_id);
-        $product_id = Input::get('product');
-        $amount = Input::get('amount');
-        $total = $amount*$product->product_price;
-        $cart_products = Cart::all();
-        $cart_total=Cart::with('Products')->sum('total');
-  
-        
+     
+      
+        $product_id = $request->product_id;
+        $amount = $request->amount;
+      
 
-
-        Category::create(request(['product_id', 'amount', 'total']));
-        return view('carts.index', compact('product_id', 'amount', 'total', 'product', 'cart_products', 'cart_total'));
-
-        // session()->flash("success_message", "You have created a new category");
-        // return redirect('/categories');
+      
+            $product = Product::find($product_id);
+            $total = $amount*$product->price;
+      
+      
+            Cart::create(
+              array(
+             
+              'product_id'=>$product_id,
+              'amount'=>$amount,
+            //   'total'=>$total
+              ));
+              $products = Product::all();
+              return view('buyers.index', compact('products'));
     }
+
+
 
     /**
      * Display the specified resource.

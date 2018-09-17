@@ -3,18 +3,14 @@
 <div class="container">
    <div class="span12">
       <div class="row">
-   
-            @foreach($products as $product)
+        <div class="col-md-6">  
+           
            
                <div class="product-images-wrapper img-thumbnail" style="padding: 25px; margin: 25px;">
                   <div class="main-media" style="display: block">
-                     <img src="/images/{{$product->image}}" alt="{{$product->product_name}}"     style="max-height: 300px;"
-                        class="card-img-top img-fluid" usemap="#planetmap" >
-                        <map name="planetmap">
-                            <area shape="rect" coords="0,0,82,126" alt="See More" href="/buyershow/{{$product->id}}"> 
-                            <area shape="circle" coords="90,58,3" alt="See" href="/buyershow/{{$product->id}}">
-                            <area shape="circle" coords="124,58,8" alt="See" href="/buyershow/{{$product->id}}">
-                         </map>
+                     <img src="/images/{{$product->image}}" alt="{{$product->product_name}}"     
+                        class="card-img-top img-fluid" >
+              
 
                      <div class="caption">
                         <h3>{{$product->product_name}}</h3>
@@ -31,12 +27,21 @@
                            </select>
                            <p align="center"><button type="submit"  class="btn btn-info btn-block">Add to Cart</button></p>
                         </form>
+                        </div>
+          
                      </div>
                   </div>
                </div>
-           
-           
-            @endforeach
+               <div class="col-md-6">
+   <div class="card" style="padding: 25px; margin: 25px;">
+      <div class="card-header">{{ __('Description') }}</div>
+      <div class="card-body">
+         {{$product->product_description}} 
+      </div>
+   </div>
+</div>
+</div  >
+       
    
       </div>
    </div>

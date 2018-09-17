@@ -7,6 +7,8 @@ use App\Product;
 use App\User;
 use App\Category;
 use App\Feature;
+use App\Order;
+
 
 class Product extends Model
 {
@@ -21,6 +23,12 @@ class Product extends Model
     {
         return $this->belongsToMany(Feature::class);
     }
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
+ 
+
 
     // public function user()
     // {

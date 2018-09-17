@@ -19,4 +19,11 @@ class BuyProductController extends Controller
         $products = Product::all();
         return view('buyers.index', compact('products'));
     }
+    public function show($id)
+    {
+        //
+        $products = Product::all();
+        $product = Product::find($id);
+        return view('buyers.show', compact('products', 'product'));
+    }
 }

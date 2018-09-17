@@ -58,9 +58,10 @@
       </tr>
     </tbody>
   </table>
-  <form action="/order" method="post" accept-charset="UTF-8">
-  @csrf
-  <a href = "/order" class="btn  btn-block btn-primary btn-large">Place order </a>
+  <form action="/orders" method="post" accept-charset="UTF-8">
+  {{ csrf_field() }}
+  <a href = "/orders" class="btn  btn-block btn-primary btn-large">Place order </a>
+  <button type="submit" class="btn btn-warning">Place</button>
    
   </form>
 </div>

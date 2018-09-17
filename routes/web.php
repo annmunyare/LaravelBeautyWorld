@@ -51,14 +51,15 @@ Route::get('/productfeatures/delete/{id}',  'ProductFeatureController@destroy');
 Auth::routes();
 
 Route::get('/buyerproducts',  'BuyProductController@index');
+Route::get('/buyershow/{id}',  'BuyProductController@show');
 Auth::routes();
-
+//cart
 Route::get('/carts',  'CartController@index');
 Route::post('/carts/add',  'CartController@store');
-Route::get('/carts/add',  'CartController@index');
 Route::get('/carts/delete/{id}',  'CartController@destroy');
 //orders 
 Route::get('users/orders',  'OrderController@index');
+Route::get('/orders',  'OrderController@index');
 Route::post('/orders',  'OrderController@store');
 Route::get('/orders/delete/{id}',  'OrderController@destroy');
 Auth::routes();

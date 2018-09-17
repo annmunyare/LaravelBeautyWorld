@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use App\Cart;
+use App\Product;
+use App\OrderProduct;
 class OrderController extends Controller
 {
     /**
@@ -19,8 +22,10 @@ class OrderController extends Controller
     public function index()
     {
         //
+      
         $orders = Order::all();
-        return view('orders.index', compact('orders'));
+        $order_products = OrderProduct::all();
+        return view('orders.index', compact('orders', 'order_products'));
     }
 
     /**
@@ -39,27 +44,45 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+
+
+    public function postOrder()
+  {
     
 
-        // Order::create(request(['user_id', 'total']));   
-        Order::create(request(['total']));
+    $this->validate(request(),[
         
-        foreach ($cart_products as $order_products) {
     
-            $order->orderItems()->attach($order_products->product_id, array(
-              'amount'=>$order_productss->amount,
-              'price'=>$order_products->Products->product_price,
-              'total'=>$order_products->Products->product_price*$order_products->amount
-              ));
-    
-          }
-          return view('orders.index', compact('orders'))->with('message','Your order processed successfully.');
+    ]);
 
-        // session()->flash("success_message", "You have created a new category");
-        // return redirect('/orders');
-    }
+    Product::create(request(['total', 'product_status', 'product_price', 'category_id', 'product_description','image']));
+
+     
+
+    //    $cart_total=Cart::with('Books')->where('member_id','=',$member_id)->sum('total');
+
+        $order = Order::create(
+        array(
+        'member_id'=>$member_id,
+        'address'=>$address,
+        'total'=>$cart_total
+        ));
+
+      foreach ($cart_books as $order_books) {
+
+        $order->orderItems()->attach($order_books->book_id, array(
+          'amount'=>$order_books->amount,
+          'price'=>$order_books->Books->price,
+          'total'=>$order_books->Books->price*$order_books->amount
+          ));
+
+      }
+      
+      Cart::where('member_id','=',$member_id)->delete();
+
+      return Redirect::route('index')->with('message','Your order processed successfully.');
+  }
+   
 
     /**
      * Display the specified resource.
