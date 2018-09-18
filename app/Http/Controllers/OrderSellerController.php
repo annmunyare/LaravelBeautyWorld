@@ -57,7 +57,7 @@ class OrderSellerController extends Controller
     
     ]);
     
-    // $user_id = Auth::user()->id;
+    $user_id = Auth::user()->id;
     $cart_total=Cart::with('orders')->sum('total');
 
    
