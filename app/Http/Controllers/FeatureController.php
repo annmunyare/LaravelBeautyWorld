@@ -74,8 +74,8 @@ class FeatureController extends Controller
    public function edit($id)
    {
        //
-       $category = Feature::find($id);
-       return view('features.edit', compact('category'));
+       $feature = Feature::find($id);
+       return view('features.edit', compact('feature'));
    }
 
    /**

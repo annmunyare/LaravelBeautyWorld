@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\ProductFeature;
+use App\Product;
+use App\Feature;
 
 class ProductFeatureController extends Controller
 {
@@ -35,8 +37,10 @@ class ProductFeatureController extends Controller
     public function create()
     {
         //
+        $products = Product::all();
+        $features= Feature::all();
         $productfeatures = ProductFeature::all();
-        return view('productfeatures.create', compact('productfeatures'));
+        return view('productfeatures.create', compact('productfeatures', 'features', 'products'));
      
     }
 
@@ -48,19 +52,20 @@ class ProductFeatureController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         //
         $this->validate(request(),[
-            'product_name'=>'required',
-            'product_status'=>'required',
-            'product_price'=>'required',
-            'category_id'=>'required',
-            'product_description'=>'required',
+            'feature_id'=>'required',
+            'product_id'=>'required',
+           
         ]);
+        $productfeatures = ProductFeature::all();
 
-        ProductFeature::create(request(['product_name', 'product_status', 'product_price', 'category_id', 'product_description',]));
+        ProductFeature::create(request(['feature_id', 'product_id']));
+        return view('productfeatures.index', compact('productfeatures'));
 
         // session()->flash("success_message", "You have created a new category");
-        return redirect('/productfeatures');
+        // return redirect('/productfeatures');
     }
 
     /**
@@ -83,9 +88,13 @@ class ProductFeatureController extends Controller
     public function edit($id)
     {
         //
+        $productfeature = Productfeature::find($id);
+        $products = Product::all();
+        $features= Feature::all();
+        $product = Product::find($id);
+        $feature = Feature::find($id);
       
-        $productfeatures = ProductFeature::find($id);
-        return view('productfeatures.edit', compact('productfeatures'));
+        return view('productfeatures.edit', compact('productfeature', 'features', 'products','feature', 'product' ));
     }
 
     /**
@@ -99,16 +108,14 @@ class ProductFeatureController extends Controller
     {
         //
         $this->validate(request(),[
-
-            'product_name'=>'required',
-            'product_status'=>'required',
-            'product_price'=>'required',
-             'product_description'=>'required',
+            'feature_id'=>'required',
+            'product_id'=>'required',
         ]);
         
         ProductFeature::where('id', $id)
-        ->update(request(['product_name', 'product_status', 'product_price', 'product_description' ]));
-        return redirect('/productfeatures');
+        ->update(request(['feature_id', 'product_id' ]));
+        $productfeatures = ProductFeature::all();
+        return view('productfeatures.index', compact('productfeatures'));
     }
 
     /**
@@ -122,6 +129,7 @@ class ProductFeatureController extends Controller
         //
         ProductFeature::where('id', $id)
         ->delete();
-        return redirect('/productfeatures');
+        $productfeatures = ProductFeature::all();
+        return view('productfeatures.index', compact('productfeatures'));
     }
 }

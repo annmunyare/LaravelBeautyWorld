@@ -7,10 +7,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Features') }}</div>
+                <div class="card-header">{{ __(' Edit Categories') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/categories" >
+                    <form method="POST" action="/categories/{{$category-> id}}" >
                         <!-- @csrf -->
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
@@ -40,7 +40,7 @@
                       <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                             <a href = "/categories " class="btn  btn-warning">Back</a></td>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Edit Category</button>
                             </div>
                             <br>
                         </div>

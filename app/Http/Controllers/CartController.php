@@ -18,8 +18,8 @@ class CartController extends Controller
     {
         //
         $cart_products = Cart::all();
-        // $cart_total=Cart::with('Products')->sum('total');
-        $cart_total = 100;
+        $cart_total=Cart::with('products')->sum('total');
+        // $cart_total = 100;
         
     if(!$cart_products){
 
@@ -60,7 +60,7 @@ class CartController extends Controller
 
       
             $product = Product::find($product_id);
-            $total = $amount*$product->price;
+            $total = $amount*($product->product_price);
       
       
             Cart::create(
@@ -68,7 +68,7 @@ class CartController extends Controller
              
               'product_id'=>$product_id,
               'amount'=>$amount,
-            //   'total'=>$total
+              'total'=>$total
               ));
               $products = Product::all();
               return view('buyers.index', compact('products'));

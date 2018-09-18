@@ -60,8 +60,8 @@
   </table>
   <form action="/orders" method="post" accept-charset="UTF-8">
   {{ csrf_field() }}
-  <a href = "/orders" class="btn  btn-block btn-primary btn-large">Place order </a>
-  <button type="submit" class="btn btn-warning">Place</button>
+  
+  <button type="submit" class="btn btn-block btn-primary btn-large">Place</button>
    
   </form>
 </div>

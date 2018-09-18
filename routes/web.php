@@ -44,6 +44,7 @@ Auth::routes();
 
 //route for productfeatures
 Route::get('productfeatures/index/{id} ',  'ProductFeatureController@index');
+Route::get('/productfeatures/create',  'ProductFeatureController@create');
 Route::post('/productfeatures',  'ProductFeatureController@store');
 Route::get('/productfeatures/edit/{id}',  'ProductFeatureController@edit');
 Route::patch('/productfeatures/{id}',  'ProductFeatureController@update');
@@ -57,6 +58,7 @@ Auth::routes();
 Route::get('/carts',  'CartController@index');
 Route::post('/carts/add',  'CartController@store');
 Route::get('/carts/delete/{id}',  'CartController@destroy');
+Auth::routes();
 //orders 
 Route::get('users/orders',  'OrderController@index');
 Route::get('/orders',  'OrderController@index');

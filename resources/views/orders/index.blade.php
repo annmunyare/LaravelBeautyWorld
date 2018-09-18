@@ -13,33 +13,25 @@
               <th>
                 #
               </th>
+          
+            
               <th>
-                Order Id
+              Status
               </th>
-              <th>
-                Product 
-              </th>
-              <th>
-              Amount
-              </th>
-              <th>
-              Price
-              </th>
+        
               <th>
               Total
               </th>
               </tr>
             </thead>   
             <tbody>
-            @foreach($order_products as $orderp)
+            @foreach($orders as $order)
               <tr>
-                <td>{{$orderp->id}}</td>
-                <td>{{$orderp->order_id}}</td>
-                <td>{{$orderp->product->product_name}}</td>
-                <td>{{$orderp-> amount}}</td>
-                <td>{{$orderp->price}}</td>
-                <td>{{$orderp->total}}</td>
+                <td>{{$order->id}}</td>
+              <td>{{$order->order_status}}</td>
+                <td>{{$order->total}}</td>
               </tr>
+              
               @endforeach
           
           </tbody>
@@ -52,3 +44,5 @@
 </div>
 </div>
 @endsection
+
+ 

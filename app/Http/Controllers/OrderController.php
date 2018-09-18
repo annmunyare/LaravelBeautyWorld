@@ -25,6 +25,7 @@ class OrderController extends Controller
       
         $orders = Order::all();
         $order_products = OrderProduct::all();
+        // dd($orders);
         return view('orders.index', compact('orders', 'order_products'));
     }
 
@@ -46,7 +47,7 @@ class OrderController extends Controller
      */
 
 
-    public function postOrder()
+    public function store()
   {
     
 
@@ -54,33 +55,22 @@ class OrderController extends Controller
         
     
     ]);
+    
+    $cart_total=Cart::with('products')->sum('total');
 
-    Product::create(request(['total', 'product_status', 'product_price', 'category_id', 'product_description','image']));
-
-     
-
-    //    $cart_total=Cart::with('Books')->where('member_id','=',$member_id)->sum('total');
-
-        $order = Order::create(
+   
+    $order = Order::create(
         array(
-        'member_id'=>$member_id,
-        'address'=>$address,
-        'total'=>$cart_total
+   
+        'total'=>$cart_total,
+        'order_status'=>"Placed"
         ));
 
-      foreach ($cart_books as $order_books) {
-
-        $order->orderItems()->attach($order_books->book_id, array(
-          'amount'=>$order_books->amount,
-          'price'=>$order_books->Books->price,
-          'total'=>$order_books->Books->price*$order_books->amount
-          ));
-
-      }
       
-      Cart::where('member_id','=',$member_id)->delete();
-
-      return Redirect::route('index')->with('message','Your order processed successfully.');
+  
+    $orders = Order::all();
+    $order_products = OrderProduct::all();
+      return view('orders.index', compact('orders', 'order_products'));
   }
    
 

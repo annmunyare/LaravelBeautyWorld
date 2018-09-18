@@ -6,10 +6,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Products') }}</div>
+                <div class="card-header">{{ __(' Edit Products') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/products" >
+                    <form method="POST" action="/products/{{$product-> id}}" >
                         <!-- @csrf -->
                         {{ csrf_field() }}
                          {{ method_field('PATCH') }}
@@ -65,7 +65,7 @@
                             <div class="col-md-6 offset-md-4">
 
                             <a href = "/products " class="btn btn-warning">Back</a></td>
-                            <button type="submit" class="btn btn-primary">Change</button>
+                            <button type="submit" class="btn btn-primary"> Edit Product</button>
                             </div>
                         </div>
 

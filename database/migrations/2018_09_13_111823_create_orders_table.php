@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             // $table->integer('user_id');
             $table->decimal('total', 10, 2);
-            // $table->text('order_status');
+            $table->text('order_status');
             $table->timestamps();
         });
     }
