@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\Cart;
-use App\Product;
 use App\OrderProduct;
 use Auth;
-class OrderController extends Controller
+class OrderSellerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,17 +19,8 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
+   
     public function index()
-    {
-        //
-      
-        $orders = Order::all();
-        $order_products = OrderProduct::all();
-        // dd($orders);
-        return view('orders.index', compact('orders', 'order_products'));
-    }
-    
-    public function indexSeller()
     {
         //
       
@@ -67,22 +57,22 @@ class OrderController extends Controller
     
     ]);
     
-    $user_id = Auth::user()->id;
-    $cart_total=Cart::with('products')->sum('total');
+    // $user_id = Auth::user()->id;
+    $cart_total=Cart::with('orders')->sum('total');
 
    
     $order = Order::create(
         array(
         'user_id'=>$user_id,
         'total'=>$cart_total,
-        'order_status'=>"Placed"
+        'order_status'=>"Completed"
         ));
 
       
   
     $orders = Order::all();
     $order_products = OrderProduct::all();
-      return view('orders.index', compact('orders', 'order_products'));
+      return view('orderseller.index', compact('orders', 'order_products'));
   }
    
 
@@ -95,6 +85,9 @@ class OrderController extends Controller
     public function show($id)
     {
         //
+        $orders = Order::all();
+        $order = Order::find($id);
+        return view('orderseller.show', compact('orders', 'order'));
     }
 
     /**

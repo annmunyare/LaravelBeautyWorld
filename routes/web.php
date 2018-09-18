@@ -50,7 +50,7 @@ Route::get('/productfeatures/edit/{id}',  'ProductFeatureController@edit');
 Route::patch('/productfeatures/{id}',  'ProductFeatureController@update');
 Route::get('/productfeatures/delete/{id}',  'ProductFeatureController@destroy');
 Auth::routes();
-
+// buyers products
 Route::get('/buyerproducts',  'BuyProductController@index');
 Route::get('/buyershow/{id}',  'BuyProductController@show');
 Auth::routes();
@@ -63,8 +63,14 @@ Auth::routes();
 Route::get('users/orders',  'OrderController@index');
 Route::get('/orders',  'OrderController@index');
 Route::post('/orders',  'OrderController@store');
+Route::get('/orders/edit/{id}',  'OrderController@edit');
+Route::patch('/orders/{id}',  'OrderController@update');
 Route::get('/orders/delete/{id}',  'OrderController@destroy');
 Auth::routes();
+//seller oders
+Route::get('/ordershow/{id}',  'OrderSellerController@show');
+Route::get('/orders',  'OrderSellerController@index');
+Route::post('/orders/{id}',  'OrderSellerController@store');
 
 //Routes for users crud
 Route::get('/users',  'UserController@index');

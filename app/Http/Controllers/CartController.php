@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Cart;
 use App\Product;
+use Auth;
 
 class CartController extends Controller
 {
@@ -17,6 +18,7 @@ class CartController extends Controller
     public function index()
     {
         //
+        $user_id = Auth::user()->id;
         $cart_products = Cart::all();
         $cart_total=Cart::with('products')->sum('total');
         // $cart_total = 100;
@@ -56,22 +58,33 @@ class CartController extends Controller
       
         $product_id = $request->product_id;
         $amount = $request->amount;
+    
+        $user_id = Auth::user()->id;
       
 
       
-            $product = Product::find($product_id);
-            $total = $amount*($product->product_price);
+        $product = Product::find($product_id);
+        $total = $amount*($product->product_price);
+
+        $count = Cart::where('product_id','=',$product_id)->where('user_id','=',$user_id)->count();
+
+        if($count){
+            $products = Product::all();
+ 
+            return view('buyers.index', compact('products'))->with('error','The product is already in your cart.');
+        }
+
       
       
             Cart::create(
               array(
-             
+            'user_id'=>$user_id,
               'product_id'=>$product_id,
               'amount'=>$amount,
               'total'=>$total
               ));
               $products = Product::all();
-              return view('buyers.index', compact('products'));
+              return view('buyers.index', compact('products'))->with('message', 'Add to cart successful');;
     }
 
 

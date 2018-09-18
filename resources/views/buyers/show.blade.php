@@ -33,10 +33,10 @@
                   </div>
                </div>
                <div class="col-md-6">
-   <div class="card" style="padding: 25px; margin: 25px;">
-      <div class="card-header">{{ __('Description') }}</div>
-      <div class="card-body">
-         {{$product->product_description}} 
+              <div class="card" style="padding: 25px; margin: 25px;">
+                <div class="card-header">{{ __('Description') }}</div>
+                <div class="card-body">
+                {{$product->product_description}} 
       </div>
    </div>
 </div>
