@@ -20,9 +20,9 @@ class Cart extends Model
     {
         return $this->belongsToMany(Product::class); //create cart products table alis order itiems
     }
-    public function orderItems()
-    {
-        return $this->belongsToMany(Product::class) ->withPivot('amount','total');
-    }
+    // public function orderItems()
+    // {
+    //     return $this->belongsToMany(Product::class) ->withPivot('amount','total');
+    // }
     
 }

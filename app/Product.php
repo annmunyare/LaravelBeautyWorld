@@ -19,6 +19,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
+    }
     public function features()
     {
         return $this->belongsToMany(Feature::class);
@@ -30,8 +34,8 @@ class Product extends Model
  
 
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
