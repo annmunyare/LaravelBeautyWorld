@@ -19,16 +19,11 @@ class CartController extends Controller
     {
         //
         $user_id = Auth::user()->id;
-        // $cart_products=Cart::with('products')
-        //             ->where('user_id','=',$user_id)
-        //             ->get();
-        // // $product_id = $request->product_id;
-        // dd($cart_products);
-       
-        // $cart_products = Cart::all();
-        $cart_products=Cart::with('products');
+        $cart_products=Cart::with('products')->get();
+// return($cart_products);
         $cart_total=Cart::with('products')->sum('total');
-        // $cart_total = 100;
+  
+    
         
     if(!$cart_products){
 

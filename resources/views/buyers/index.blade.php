@@ -13,10 +13,7 @@
                          <map name="planetmap">
                             <area shape="rect" coords="19,28,222,228" alt="See More" href="/buyershow/{{$product->id}}"> 
                         </map>
-                      
-
-
-                     <div class="caption">
+                      <div class="caption">
                         <h3>{{$product->product_name}}</h3>
                         <p>Price KES : <b>{{$product->product_price}}</b></p>
                         <p>Price Status : <b>{{$product->product_status}}</b></p>
