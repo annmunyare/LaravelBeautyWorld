@@ -42,6 +42,16 @@ Route::patch('/features/{id}',  'FeatureController@update');
 Route::get('/features/delete/{id}',  'FeatureController@destroy');
 Auth::routes();
 
+
+//Routes for FeatureVariations
+Route::get('/featureVariations',  'FeatureVariationController@index');
+Route::get('/featureVariations/create/{id}',  'FeatureVariationController@create');
+Route::post('/featureVariations',  'FeatureVariationController@store');
+Route::get('/featureVariations/edit/{id}',  'FeatureVariationController@edit');
+Route::patch('/featureVariations/{id}',  'FeatureVariationController@update');
+Route::get('/featureVariations/delete/{id}',  'FeatureVariationController@destroy');
+Auth::routes();
+
 //route for productfeatures
 Route::get('productfeatures/index/{id} ',  'ProductFeatureController@index');
 Route::get('/productfeatures/create',  'ProductFeatureController@create');
@@ -64,6 +74,11 @@ Route::get('users/orders',  'OrderController@index');
 Route::get('/orders',  'OrderController@index');
 Route::post('/orders',  'OrderController@store');
 Route::get('/orders/delete/{id}',  'OrderController@destroy');
+Auth::routes();
+//order sellers
+Route::get('/ordershow/{id}',  'OrderSellerController@show');
+Route::get('/orders',  'OrderSellerController@index');
+Route::patch('/orders/{id}',  'OrderSellerController@update');
 Auth::routes();
 
 //Routes for users crud

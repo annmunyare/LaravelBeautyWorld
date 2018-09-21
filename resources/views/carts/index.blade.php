@@ -8,14 +8,12 @@
     <tbody>
       <tr>
         <td>
-          <b>Title</b>
+          <b>Product id</b>
         </td>
         <td>
           <b>Amount</b>
         </td>
-        <td>
-          <b>Price</b>
-        </td>
+     
         <td>
           <b>Total</b>
         </td>
@@ -25,13 +23,11 @@
       </tr>
       @foreach($cart_products as $cart_item)
         <tr>
-          <td>{{$cart_item->product->product_name}}</td>
+          <td>{{$cart_item->product_id}}</td>
           <td>
            {{$cart_item->amount}}
           </td>
-          <td>
-            {{$cart_item->product->product_price}}
-          </td>
+          
           <td>
            {{$cart_item->total}}
           </td>
@@ -60,9 +56,13 @@
   </table>
   <form action="/orders" method="post" accept-charset="UTF-8">
   {{ csrf_field() }}
-  
+  @foreach($cart_products as $cart_item)
+  <input type ="hidden" name ="user_id" value ="{{$cart_item->user_id}}">
+  @endforeach
   <button type="submit" class="btn btn-block btn-primary btn-large">Place</button>
-   
+
+
+
   </form>
 </div>
 @endsection

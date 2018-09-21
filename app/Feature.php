@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Product;
 use App\User;
+use App\FeatureVariation;
 
 class Feature extends Model
 {
@@ -20,8 +21,13 @@ class Feature extends Model
         return $this->belongsToMany(Product::class);
     }
     
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function featurevariations()
+    {
+        return $this->hasMany(FeatureVariation::class);
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

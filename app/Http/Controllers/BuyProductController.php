@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Feature;
+use App\FeatureVariation;
 
 class BuyProductController extends Controller
 {
@@ -17,13 +19,19 @@ class BuyProductController extends Controller
     {
         //
         $products = Product::all();
-        return view('buyers.index', compact('products'));
+        $features = Feature::all();
+        
+        $featureVariations = FeatureVariation::all();
+        return view('buyers.index', compact('products', 'features', 'featureVariations'));
     }
     public function show($id)
     {
         //
         $products = Product::all();
         $product = Product::find($id);
-        return view('buyers.show', compact('products', 'product'));
+        $features = Feature::all();
+        $featureVariation = FeatureVariation::find($id);    
+        $featureVariations = FeatureVariation::all();
+        return view('buyers.show', compact('products', 'product', 'features', 'featureVariations', 'featureVariation'));
     }
 }

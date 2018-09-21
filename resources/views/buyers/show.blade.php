@@ -10,7 +10,7 @@
                   <div class="main-media" style="display: block">
                      <img src="/images/{{$product->image}}" alt="{{$product->product_name}}"     
                         class="card-img-top img-fluid" >
-              
+                     
 
                      <div class="caption">
                         <h3>{{$product->product_name}}</h3>
@@ -25,6 +25,24 @@
                               <option value="4">4</option>
                               <option value="5">5</option>
                            </select>
+                           @foreach($features as $feature)
+                           <p> <b>
+                          {{$feature->feature_name}} </b></p>
+                          @foreach($featureVariations as $featureVariation)
+                          @if($feature->id == $featureVariation->feature_id)
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox"  name="variation_price"  value="{{$featureVariation->variation_price}}" >
+                            <label class="form-check-label" for="defaultCheck1">
+                            {{$featureVariation->variation_name}}
+                            </label>
+                          </div>
+                          @endif
+                          @endforeach
+
+                      
+                    
+                    @endforeach
+
                            <p align="center"><button type="submit"  class="btn btn-info btn-block">Add to Cart</button></p>
                         </form>
                         </div>
@@ -33,14 +51,18 @@
                   </div>
                </div>
                <div class="col-md-6">
-   <div class="card" style="padding: 25px; margin: 25px;">
-      <div class="card-header">{{ __('Description') }}</div>
-      <div class="card-body">
-         {{$product->product_description}} 
-      </div>
-   </div>
-</div>
-</div  >
+                  <div class="card" style="padding: 25px; margin: 25px;">
+
+                      <div class="card-header">{{ __('Description') }}</div>
+                        <div class="card-body">
+                          {{$product->product_description}} 
+                        </div>
+                    </div>
+       
+                   
+               
+          </div> 
+          
        
    
       </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Cart;
 use App\Product;
+use Auth;
 
 class CartController extends Controller
 {
@@ -19,6 +20,7 @@ class CartController extends Controller
         //
         $cart_products = Cart::all();
         $cart_total=Cart::with('products')->sum('total');
+        // dd($cart_total);
         // $cart_total = 100;
         
     if(!$cart_products){
@@ -53,19 +55,27 @@ class CartController extends Controller
    
         ]);
      
-      
+        $user_id = Auth::user()->id;
         $product_id = $request->product_id;
+        $feateureVariation = $request->variation_price;
+        // dd($feateureVariation);
+
         $amount = $request->amount;
       
 
       
             $product = Product::find($product_id);
-            $total = $amount*($product->product_price);
-      
+            $total = ($amount*($product->product_price))+($feateureVariation);
+            $count = Cart::where('product_id','=',$product_id)->count();
+
+       if($count){
+        $products = Product::all();
+        return view('buyers.index', compact('products'))->with('error','The product is already in your cart.');
+       }
       
             Cart::create(
               array(
-             
+            'user_id'=>$user_id,
               'product_id'=>$product_id,
               'amount'=>$amount,
               'total'=>$total

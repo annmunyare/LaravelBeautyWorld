@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\Cart;
-use App\Product;
 use App\OrderProduct;
-class OrderController extends Controller
+use Auth;
+class OrderSellerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,6 +19,7 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
+   
     public function index()
     {
         //
@@ -26,7 +27,7 @@ class OrderController extends Controller
         $orders = Order::all();
         $order_products = OrderProduct::all();
         // dd($orders);
-        return view('orders.index', compact('orders', 'order_products'));
+        return view('orderseller.index', compact('orders', 'order_products'));
     }
 
     /**
@@ -47,7 +48,7 @@ class OrderController extends Controller
      */
 
 
-    public function store(Request $request)
+    public function store()
   {
     
 
@@ -56,23 +57,22 @@ class OrderController extends Controller
     
     ]);
     
-    $cart_total=Cart::with('products')->sum('total');
+    $user_id = Auth::user()->id;
+    $cart_total=Cart::with('orders')->sum('total');
 
-    // Order::create(request(['user_id', 'total'=>$cart_total, 'order_status'=>"Placed"]));
-
+   
     $order = Order::create(
         array(
-            'user_id'=>$request->user_id,
-            'total'=>$cart_total,
-        'order_status'=>"Placed"
+        'user_id'=>$user_id,
+        'total'=>$cart_total,
+        'order_status'=>"Completed"
         ));
-        
 
       
   
     $orders = Order::all();
     $order_products = OrderProduct::all();
-      return view('orders.index', compact('orders', 'order_products'));
+      return view('orderseller.index', compact('orders', 'order_products'));
   }
    
 
@@ -85,6 +85,9 @@ class OrderController extends Controller
     public function show($id)
     {
         //
+        $orders = Order::all();
+        $order = Order::find($id);
+        return view('orderseller.show', compact('orders', 'order'));
     }
 
     /**
@@ -93,8 +96,36 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+    public function edit($id)
+    {
+        //
+        $products = Product::all();
+        $product = Product::find($id);
+        $category = Category::find($id);
+        $categories = Category::all();
+        return view('products.edit', compact('product', 'products', 'categories', 'category'));
+    }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+        $this->validate(request(),[
+
+          
+        ]);
+        
+        Order::where('id', $id)
+        ->update(request(['user_id',  'order_status'=>"Completed", 'total' ]));
+      
+        return redirect('/orders');
+    }
 
     /**
      * Remove the specified resource from storage.
