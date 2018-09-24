@@ -34,23 +34,23 @@ class BuyProductController extends Controller
         $product = Product::find($id);
        
         $products = Product::all();
-        // // $productfeature = ProductFeature::where("product_id", $id)->get();
+        $productfeature = ProductFeature::where("product_id", $id)->get();
        
-        // // foreach($productfeature as $feature ){
+        foreach($productfeature as $feature ){
 
-        // //     $featureid= $feature->feature_id;
-        // //     $feature = Feature:: where("id", $featureid)->get();
-        // //     foreach($feature as $featurev ){
-        // //         $featureidd =$featurev->id;
-        // //         $featureVariation = FeatureVariation::where("feature_id",  $featureidd )->get();
-        // //         foreach($featureVariation as $featurevt ){
-        // //             // dd($featurevt);
-        // //         }
-        // //     }
+            $featureid= $feature->feature_id;
+            $feature = Feature:: where("id", $featureid)->get();
+            foreach($feature as $featurev ){
+                $featureidd =$featurev->id;
+                $featureVariation = FeatureVariation::where("feature_id",  $featureidd )->get();
+                foreach($featureVariation as $featurevt ){
+                    // return $featurevt->variation_price;
+                }
+            }
 
 
             
-        // }
+        }
 
    
         return view('buyers.show', compact('products', 'product','features', 'featureVariations', 'productImages'));

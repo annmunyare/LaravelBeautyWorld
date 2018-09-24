@@ -27,10 +27,11 @@
                           @foreach($featureVariations as $featureVariation)
                           @if($feature->id == $featureVariation->feature_id)
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox"  name="variation_price"  value="{{$featureVariation->variation_price}}" >
-                            <label class="form-check-label" for="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
                             {{$featureVariation->variation_name}}
                             </label>
+                            <input class="form-check-input" type="checkbox"  name="variation_price"  value="{{$featureVariation->variation_price}}" >
+                   
                           </div>
                           @endif
                           @endforeach

@@ -7,6 +7,7 @@ use App\Order;
 use App\Cart;
 use App\Product;
 use App\OrderProduct;
+use Auth;
 class OrderController extends Controller
 {
     /**
@@ -49,7 +50,7 @@ class OrderController extends Controller
 
     public function store(Request $request)
   {
-    
+    $user_id = Auth::user()->id;
 
     $this->validate(request(),[
         
@@ -62,17 +63,18 @@ class OrderController extends Controller
 
     $order = Order::create(
         array(
-            'user_id'=>$request->user_id,
+            'user_id'=>$user_id,
             'total'=>$cart_total,
         'order_status'=>"Placed"
         ));
         
-
+        // Cart::where('id', $id)->delete();
       
   
     $orders = Order::all();
     $order_products = OrderProduct::all();
       return view('orders.index', compact('orders', 'order_products'));
+      
   }
    
 
