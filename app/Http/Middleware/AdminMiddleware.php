@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Response;
+use App\Category;
 
 class AdminMiddleware
 {
@@ -21,6 +22,8 @@ class AdminMiddleware
         {
             return new Response(view('unauthorized')->with('role', 'ADMIN'));
         }
+      
         return $next($request);
+      
     }
 }

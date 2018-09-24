@@ -7,11 +7,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Features') }}</div>
+                <div class="card-header">{{ __('Category') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="/categories" >
-                        @csrf
+                        {{csrf_field()}}
           
                         <div class="form-group row">
                             <label for="category_parent" class="col-md-4 col-form-label text-md-right">{{ __('Category Parent') }}</label>

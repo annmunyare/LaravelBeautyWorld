@@ -26,8 +26,8 @@
   position: absolute;
   top: 35%;
   left: 20%;
-  transform: translate(-10%, -10%);
-  -ms-transform: translate(-10%, -10%);
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   text-align: center;
 }
 .main-media:hover .img-fluid {
@@ -66,9 +66,9 @@
             <a class="nav-link" href="/reviews">Reviews</a>
          </li>
          <li class="nav-item">
-         <a href="/carts"><i class="icon-shopping-cart icon-black"></i> Your Cart</a>
+         <a href="/carts"><i class="icon-shopping-cart icon-black"></i> <img src="/images/icon.png"></a>
          </li>
-         <li class="nav-item dropdown">
+         <li class="nav-item dropdown mr-auto ">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user()->name }} <span class="caret"></span>
             </a>
@@ -113,6 +113,10 @@
   @if(Session::has('message'))
     alert("{{Session::get('message')}}");
   @endif
+
+    $('.carousel').carousel({
+  interval: 1000
+});
 
   </script>
   </body>

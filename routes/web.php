@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 //Routes for Categories
 Route::get('/categories',  'CategoryController@index');
 Route::get('/categories/create',  'CategoryController@create');
@@ -51,6 +52,14 @@ Route::get('/featureVariations/edit/{id}',  'FeatureVariationController@edit');
 Route::patch('/featureVariations/{id}',  'FeatureVariationController@update');
 Route::get('/featureVariations/delete/{id}',  'FeatureVariationController@destroy');
 Auth::routes();
+////Routes for Product Images
+Route::get('/productImages',  'ProductImageController@index');
+Route::get('/productImages/create/{id}',  'ProductImageController@create');
+Route::post('/productImages',  'ProductImageController@store');
+Route::get('/productImages/edit/{id}',  'ProductImageController@edit');
+Route::patch('/productImages/{id}',  'ProductImageController@update');
+Route::get('/productImages/delete/{id}',  'ProductImageController@destroy');
+Auth::routes();
 
 //route for productfeatures
 Route::get('productfeatures/index/{id} ',  'ProductFeatureController@index');
@@ -60,7 +69,7 @@ Route::get('/productfeatures/edit/{id}',  'ProductFeatureController@edit');
 Route::patch('/productfeatures/{id}',  'ProductFeatureController@update');
 Route::get('/productfeatures/delete/{id}',  'ProductFeatureController@destroy');
 Auth::routes();
-
+//buyerproducts
 Route::get('/buyerproducts',  'BuyProductController@index');
 Route::get('/buyershow/{id}',  'BuyProductController@show');
 Auth::routes();
@@ -91,17 +100,21 @@ Route::get('/users/delete/{id}',  'UserController@destroy');
 Auth::routes();
 
 //Routes for multi user authentication
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
-{
-	Route::match(['get', 'post'], '/adminOnlyPage/', 'HomeController@admin');	
-});
-Route::group(['middleware' => 'App\Http\Middleware\BuyerMiddleware'], function()
-{
-	Route::match(['get', 'post'], '/buyerOnlyPage/', 'HomeController@buyer');
-});
-Route::group(['middleware' => 'App\Http\Middleware\SellerMiddleware'], function()
-{
-	Route::match(['get', 'post'], '/sellerOnlyPage/', 'HomeController@seller');	
-});
+// Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+// {
+// 	Route::match(['get', 'post'], '/admin/', 'CategoryController@index');	
+// });
+// Route::group(['middleware' => 'App\Http\Middleware\BuyerMiddleware'], function()
+// {
+// 	Route::match(['get', 'post'], '/buyer/', 'BuyProductController@index');
+// });
+// Route::group(['middleware' => 'App\Http\Middleware\SellerMiddleware'], function()
+// {
+// 	Route::match(['get', 'post'], '/seller/', 'ProductController@index');	
+// });
+
+Route::get('admin/routes', 'HomeController@admin')->middleware('admin');
+Route::get('seller/routes', 'HomeController@seller')->middleware('seller');
+Route::get('buyer/routes', 'HomeController@buyer')->middleware('buyer');

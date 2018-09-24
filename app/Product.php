@@ -8,6 +8,7 @@ use App\User;
 use App\Category;
 use App\Feature;
 use App\Order;
+use App\ProductImage;
 
 
 class Product extends Model
@@ -27,7 +28,10 @@ class Product extends Model
     {
         return $this->belongsToMany(Order::class);
     }
- 
+    public function productImages()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 
 
     public function user()
