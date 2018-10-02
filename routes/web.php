@@ -26,13 +26,16 @@ Route::get('/categories/delete/{id}',  'CategoryController@destroy');
 Auth::routes();
 
 //Routes for Products
+
 Route::get('/products',  'ProductController@index');
 Route::get('/products/create',  'ProductController@create');
 Route::post('/products',  'ProductController@store');
 Route::get('/products/edit/{id}',  'ProductController@edit');
 Route::patch('/products/{id}',  'ProductController@update');
 Route::get('/products/delete/{id}',  'ProductController@destroy');
+
 Auth::routes();
+Route::get('/productJson',  'ProductController@productJson');
 
 //Routes for Features
 Route::get('/features',  'FeatureController@index');
