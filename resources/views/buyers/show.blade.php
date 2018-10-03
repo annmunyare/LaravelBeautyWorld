@@ -48,16 +48,6 @@
                   </div>
                </div>
                <div class="col-md-6">
-<<<<<<< HEAD
-              <div class="card" style="padding: 25px; margin: 25px;">
-                <div class="card-header">{{ __('Description') }}</div>
-                <div class="card-body">
-                {{$product->product_description}} 
-      </div>
-   </div>
-</div>
-</div  >
-=======
                   <div class="card" style="padding: 25px; margin: 25px;">
 
                       <div class="card-header">{{ __('Description') }}</div>
@@ -95,7 +85,6 @@
                
           </div> 
           
->>>>>>> c8e8977
        
    
       </div>

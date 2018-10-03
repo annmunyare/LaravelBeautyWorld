@@ -23,7 +23,6 @@
       </tr>
       @foreach($cart_products as $cart_item)
         <tr>
-<<<<<<< HEAD
           <td>{{$cart_item->products->product_name}}</td>
           <td>
            {{$cart_item->amount}}
@@ -31,13 +30,6 @@
           <td>
             {{$cart_item->products->product_price}}
           </td>
-=======
-          <td>{{$cart_item->product_id}}</td>
-          <td>
-           {{$cart_item->amount}}
-          </td>
-          
->>>>>>> c8e8977
           <td>
            {{$cart_item->total}}
           </td>

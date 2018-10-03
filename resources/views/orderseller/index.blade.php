@@ -38,16 +38,9 @@
             <form action="/orders/{{$order->id}}" name="complet_order" method="POST" accept-charset="UTF-8">
             <input type="hidden" name="user_id" value="{{$order->user_id}}" >
             <input type="hidden" name="order_id" value="{{$order->id}}" >
-<<<<<<< HEAD
             <input type="hidden" name="order_status" value="{{$order->order_status}}" >
             <input type="hidden" name="total" value="{{$order->total}}" >
                            {{ csrf_field() }}
-=======
-
-            <input type="hidden" name="total" value="{{$order->total}}" >
-                           {{ csrf_field() }}
-                           {{ method_field('PATCH') }}
->>>>>>> c8e8977
                            <button  type="submit" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">Complete</button>
                         
                         </form>
