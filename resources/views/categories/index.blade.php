@@ -8,7 +8,7 @@
     <th>#</th>
     <th>Category Name</th>
     <th>Categoy Parent</th>
-    <th>Created On</th>
+    
     <th colspan = '4'>Actions</th>
     </tr>
     @foreach ($categories as $category)
@@ -23,7 +23,7 @@
     @endforeach
   
     </td>
-    <td>{{$category->created_at->toFormattedDateString()}} </td>
+  
     
     <td>
     <td>

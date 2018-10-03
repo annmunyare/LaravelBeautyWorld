@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/custom.css">
     <title>Hair World</title>
+<<<<<<< HEAD
 
 <style>
     .alert-success
@@ -20,6 +21,45 @@
 }
 
 
+=======
+    <style>
+
+.img-fluid {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 35%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.main-media:hover .img-fluid {
+  opacity: 0.3;
+}
+
+.main-media:hover .middle {
+  opacity: 1;
+}
+
+
+
+.text {
+  background-color: 	#5bc0de;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+>>>>>>> c8e8977
 </style>
   </head>
   <body>
@@ -40,9 +80,9 @@
             <a class="nav-link" href="/reviews">Reviews</a>
          </li>
          <li class="nav-item">
-         <a href="/carts"><i class="icon-shopping-cart icon-black"></i> Your Cart</a>
+         <a href="/carts"><i class="icon-shopping-cart icon-black"></i> <img src="/images/icon.png"></a>
          </li>
-         <li class="nav-item dropdown">
+         <li class="nav-item dropdown mr-auto ">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user()->name }} <span class="caret"></span>
             </a>
@@ -85,6 +125,7 @@
   @endif
 
   @if(Session::has('message'))
+<<<<<<< HEAD
   <div id="formSuccess" class= "alert alert-success">
        
         {{Session::get('message')}}
@@ -92,6 +133,15 @@
  
   @endif
 
+=======
+    alert("{{Session::get('message')}}");
+  @endif
+
+    $('.carousel').carousel({
+  interval: 1000
+});
+
+>>>>>>> c8e8977
   </script>
   </body>
 </html>

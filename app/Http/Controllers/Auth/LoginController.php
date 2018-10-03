@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,24 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
+    function redirectTo()
+    { 
+         if((Auth::user()->usertype_id) == '1'){
+            return '/categories';
+
+
+
+         }
+         elseif((Auth::user()->usertype_id) == '2'){
+            return '/products';
+       
+         }else
+         {
+          return '/buyerproducts';
+        
+         }
+    }
 
     /**
      * Create a new controller instance.

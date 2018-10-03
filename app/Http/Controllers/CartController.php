@@ -22,8 +22,8 @@ class CartController extends Controller
         $cart_products=Cart::with('products')->get();
 // return($cart_products);
         $cart_total=Cart::with('products')->sum('total');
-  
-    
+        // dd($cart_total);
+        // $cart_total = 100;
         
     if(!$cart_products){
 
@@ -57,26 +57,25 @@ class CartController extends Controller
    
         ]);
      
-      
+        $user_id = Auth::user()->id;
         $product_id = $request->product_id;
+        $feateureVariation = $request->variation_price;
+        // dd($feateureVariation);
+
         $amount = $request->amount;
     
         $user_id = Auth::user()->id;
       
 
       
-        $product = Product::find($product_id);
-        $total = $amount*($product->product_price);
+            $product = Product::find($product_id);
+            $total = ($amount*($product->product_price))+($feateureVariation);
+            $count = Cart::where('product_id','=',$product_id)->count();
 
-        $count = Cart::where('product_id','=',$product_id)->where('user_id','=',$user_id)->count();
-
-        if($count){
-            $products = Product::all();
- 
-            return view('buyers.index', compact('products'))->with('error','The product is already in your cart.');
-        }
-
-      
+       if($count){
+        $products = Product::all();
+        return view('buyers.index', compact('products'))->with('error','The product is already in your cart.');
+       }
       
             Cart::create(
               array(

@@ -99,6 +99,11 @@ class OrderSellerController extends Controller
     public function edit($id)
     {
         //
+        $products = Product::all();
+        $product = Product::find($id);
+        $category = Category::find($id);
+        $categories = Category::all();
+        return view('products.edit', compact('product', 'products', 'categories', 'category'));
     }
 
     /**
@@ -111,6 +116,15 @@ class OrderSellerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate(request(),[
+
+          
+        ]);
+        
+        Order::where('id', $id)
+        ->update(request(['user_id',  'order_status'=>"Completed", 'total' ]));
+      
+        return redirect('/orders');
     }
 
     /**

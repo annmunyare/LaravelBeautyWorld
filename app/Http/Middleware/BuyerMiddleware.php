@@ -4,6 +4,13 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Response;
+use App\Product;
+use App\Category;
+use App\Feature;
+use App\FeatureVariation;
+use App\ProductFeature;
+use App\ProductImage;
+
 
 class BuyerMiddleware
 {
@@ -21,5 +28,6 @@ class BuyerMiddleware
             return new Response(view('unauthorized')->with('role', 'BUYER'));
         }
         return $next($request);
+        
     }
 }

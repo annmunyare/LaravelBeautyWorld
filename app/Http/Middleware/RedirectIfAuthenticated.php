@@ -18,7 +18,23 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            function redirectTo()
+            { 
+                 if((Auth::user()->usertype_id) == '1'){
+                    return '/categories';
+        
+        
+        
+                 }
+                 elseif((Auth::user()->usertype_id) == '2'){
+                    return '/products';
+               
+                 }else
+                 {
+                  return '/buyerproducts';
+                
+                 }
+            } 
         }
 
         return $next($request);

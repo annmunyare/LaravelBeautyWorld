@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Auth;
+use App\Category;
+use View;
+use App\RedirectResponse;
+
 
 class RegisterController extends Controller
 {
@@ -27,9 +32,29 @@ class RegisterController extends Controller
      * Where to redirect users after registration.
      *
      * @var string
-     */
-    protected $redirectTo = '/home';
+      */
+  
+   
+      function redirectTo()
+      { 
+           if((Auth::user()->usertype_id) == '1'){
+           return  '/categories';
+        // return redirect('/admin');
+        // return new RedirectResponse(url('/admin'));
 
+  
+  
+  
+           }
+           elseif((Auth::user()->usertype_id) == '2'){
+            return  '/products';
+           }else
+           {
+             return '/buyerproducts';
+          
+           }
+           return $this->redirectTo;
+      }
     /**
      * Create a new controller instance.
      *

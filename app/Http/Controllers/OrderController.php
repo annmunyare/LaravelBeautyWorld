@@ -58,9 +58,9 @@ class OrderController extends Controller
      */
 
 
-    public function store()
+    public function store(Request $request)
   {
-    
+    $user_id = Auth::user()->id;
 
     $this->validate(request(),[
         
@@ -70,19 +70,22 @@ class OrderController extends Controller
     $user_id = Auth::user()->id;
     $cart_total=Cart::with('products')->sum('total');
 
-   
+    // Order::create(request(['user_id', 'total'=>$cart_total, 'order_status'=>"Placed"]));
+
     $order = Order::create(
         array(
-        'user_id'=>$user_id,
-        'total'=>$cart_total,
+            'user_id'=>$user_id,
+            'total'=>$cart_total,
         'order_status'=>"Placed"
         ));
-
+        
+        // Cart::where('id', $id)->delete();
       
   
     $orders = Order::all();
     $order_products = OrderProduct::all();
       return view('orders.index', compact('orders', 'order_products'));
+      
   }
    
 
@@ -103,22 +106,8 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

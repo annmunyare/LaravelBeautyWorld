@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Feature;
 use App\Category;
+use Auth;
 
 class FeatureController extends Controller
 {
@@ -47,8 +48,15 @@ class FeatureController extends Controller
        $this->validate(request(),[
            'feature_name'=>'required',
        ]);
+       $user_id = Auth::user()->id;
+       $feature = Feature::create(
+        array(
+        'feature_name'=>$request->feature_name,
+        'user_id'=>$user_id,
 
-       Feature::create(request(['feature_name']));
+        ));
+
+    //    Feature::create(request(['feature_name']));
 
        // session()->flash("success_message", "You have created a new category");
        return redirect('/features');

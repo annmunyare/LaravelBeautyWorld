@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use Auth;
 class ProductController extends Controller
 {
     /**
@@ -12,17 +13,23 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    public function productJson()
     {
-        $this->middleware('auth');
+        $products = Product::all();
+        
+        return $products;
     }
-    
     public function index()
     {
         //
         
         $products = Product::all();
         $categories = Category::all();
+        // dd( $products);
         return view('products.index', compact('products', 'categories'));
     }
 
@@ -36,6 +43,7 @@ class ProductController extends Controller
         //
         $products = Product::all();
         $categories = Category::all();
+       
         return view('products.create', compact('products', 'categories'));
      
     }
@@ -57,7 +65,20 @@ class ProductController extends Controller
             'product_description'=>'required',
         ]);
 
-        Product::create(request(['product_name', 'product_status', 'product_price', 'category_id', 'product_description','image']));
+        $user_id = Auth::user()->id;
+        // dd($user_id);
+        $Product = Product::create(
+            array(
+            'product_name'=>$request->product_name,
+            'category_id'=>$request->category_id,
+            'product_status'=>$request->product_status,
+            'product_price'=>$request->product_price,
+            'product_description'=>$request->product_description,
+            'image'=>$request->image,
+            'user_id'=>$user_id,
+
+            ));
+        // Product::create(request(['product_name', 'product_status', 'product_price', 'category_id', 'product_description','image']));
 
         // session()->flash("success_message", "You have created a new category");
         return redirect('/products');
