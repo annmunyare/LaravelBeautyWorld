@@ -45,7 +45,7 @@
    <td>{{$group['groupName']}} </td>
 
    <td>
-   <a href="https://join.kaiza.la/p/v0WMyzizSp-tw0keHVCxYw" class="btn btn-sm btn-info">Join</a>
+   <a href="https://join.kaiza.la/p/iLsRcimZQweiJ_wtblQbng" class="btn btn-sm btn-info">Join</a>
    </td>
    </tr>
 @endforeach
