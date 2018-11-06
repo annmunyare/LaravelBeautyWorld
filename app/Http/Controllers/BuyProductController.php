@@ -22,7 +22,8 @@ class BuyProductController extends Controller
         $products = Product::all();
         $features = Feature::all();
         $productImages = ProductImage::all();
-        
+      
+        // return    $products ;
         $featureVariations = FeatureVariation::all();
         return view('buyers.index', compact('products', 'features', 'featureVariations', 'productImages'));
     }

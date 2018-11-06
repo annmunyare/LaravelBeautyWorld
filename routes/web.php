@@ -33,9 +33,11 @@ Route::post('/products',  'ProductController@store');
 Route::get('/products/edit/{id}',  'ProductController@edit');
 Route::patch('/products/{id}',  'ProductController@update');
 Route::get('/products/delete/{id}',  'ProductController@destroy');
+Route::get('/reports',  'ProductController@groupByCategory');
 
 Auth::routes();
 Route::get('/productJson',  'ProductController@productJson');
+Route::get('/groups',  'ProductController@getstate');
 
 //Routes for Features
 Route::get('/features',  'FeatureController@index');
