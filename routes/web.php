@@ -36,8 +36,10 @@ Route::get('/products/delete/{id}',  'ProductController@destroy');
 Route::get('/reports',  'ProductController@groupByCategory');
 
 Auth::routes();
+//others
 Route::get('/productJson',  'ProductController@productJson');
 Route::get('/groups',  'ProductController@getstate');
+Route::get('/flow',  'ProductController@flow');
 
 //Routes for Features
 Route::get('/features',  'FeatureController@index');

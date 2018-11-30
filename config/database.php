@@ -1,5 +1,7 @@
 <?php
-$DATABASE_URL=parse_url('postgres://mpuiuqkcimdwqy:89d23461acd6f972ed0cc91d6ffaa9e9e6f093c0eee1e9ee5ae9b1d1f132dccb@ec2-23-23-153-145.compute-1.amazonaws.com:5432/d5ik8sbadc7hm');
+//procfile
+// web: vendor/bin/heroku-php-apache2 public/ 
+// $DATABASE_URL=parse_url('postgres://mpuiuqkcimdwqy:89d23461acd6f972ed0cc91d6ffaa9e9e6f093c0eee1e9ee5ae9b1d1f132dccb@ec2-23-23-153-145.compute-1.amazonaws.com:5432/d5ik8sbadc7hm');
 return [
 
     /*
@@ -13,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
